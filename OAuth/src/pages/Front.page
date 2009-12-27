@@ -1,0 +1,13 @@
+<apex:page showHeader="false" sidebar="false">
+<html>
+<head>
+<meta name="google-site-verification" content="kBITT2DeT4hI3egYVuBjbruguAayQeX1d0ElekMX1ug" />
+</head>
+<body>
+  <!-- Begin Default Content REMOVE THIS -->
+  <h1>Congratulations</h1>
+  This is your new Page
+  <!-- End Default Content REMOVE THIS -->
+  </body>
+  </html>
+</apex:page>
