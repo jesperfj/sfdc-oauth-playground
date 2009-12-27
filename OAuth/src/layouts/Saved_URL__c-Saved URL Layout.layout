@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Layout xmlns="http://soap.sforce.com/2006/04/metadata">
+    <excludeButtons>Submit</excludeButtons>
     <layoutSections>
         <editHeading>true</editHeading>
         <label>Information</label>
@@ -11,6 +12,10 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>url__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>method__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
@@ -46,7 +51,9 @@
         <style>TwoColumnsTopToBottom</style>
     </layoutSections>
     <layoutSections>
+        <customLabel>true</customLabel>
         <editHeading>true</editHeading>
+        <label>Custom Links</label>
         <layoutColumns/>
         <layoutColumns/>
         <layoutColumns/>

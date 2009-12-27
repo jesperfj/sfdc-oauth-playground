@@ -67,6 +67,10 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>method__c</fields>
+        <fields>url__c</fields>
+        <fields>isform__c</fields>
+        <fields>body__c</fields>
         <relatedList>Saved_URL__c.OAuth_Service__c</relatedList>
     </relatedLists>
 </Layout>
