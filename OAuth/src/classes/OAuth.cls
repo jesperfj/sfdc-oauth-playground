@@ -221,8 +221,13 @@ public class OAuth {
 			System.debug('getUrlParams: '+s);
 			List<String> kv = s.split('=');
 			if(kv.size()>1) {
-				System.debug('getUrlParams:  -> '+kv[0]+','+kv[1]);
-				res.put(kv[0],kv[1]);
+			  // RFC 5849 section 3.4.1.3.1 and 3.4.1.3.2 specify that parameter names 
+			  // and values are decoded then encoded before being sorted and concatenated
+			  // Section 3.6 specifies that space must be encoded as %20 and not +
+			  String encName = EncodingUtil.urlEncode(EncodingUtil.urlDecode(kv[0], 'UTF-8'), 'UTF-8').replace('+','%20');
+			  String encValue = EncodingUtil.urlEncode(EncodingUtil.urlDecode(kv[1], 'UTF-8'), 'UTF-8').replace('+','%20');
+			  System.debug('getUrlParams:  -> '+encName+','+encValue);
+			  res.put(encName,encValue);
 			}
 		}
 		return res;
