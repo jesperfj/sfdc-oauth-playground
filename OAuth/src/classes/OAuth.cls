@@ -1,4 +1,4 @@
-public class OAuth {
+global class OAuth {
 
 	private OAuthService__c service;
 	private String token;
