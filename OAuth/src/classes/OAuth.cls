@@ -181,9 +181,24 @@ public class OAuth {
 			 token__c, secret__c, isAccess__c FROM OAuth_Token__c 
 			 WHERE OAuth_Service__r.name= :serviceName AND owner__c=:userId AND isAccess__c = true];
 		} catch(System.QueryException e) {
-			message = 'User '+UserInfo.getUserName()+' did not authorize access to '+serviceName+'. Redirect user to authorization page. ['+e+']';
-			System.debug(message);
-			return false;
+			try {
+				// Two-legged OAuth - try to find match on serviceName
+				service = [SELECT id, name, consumer_key__c, consumer_secret__c 
+				 FROM OAuthService__c 
+				 WHERE name= :serviceName];
+				
+				System.debug('Preparing Two-legged OAuth request to service '+service.name);
+				
+				consumerKey = service.Consumer_Key__c;
+				consumerSecret = service.Consumer_Secret__c;
+				this.token = '';
+				tokenSecret = '';		
+				return true;
+			} catch(System.QueryException e1) {
+				message = 'Couldn\'t find service '+serviceName+'. ['+e1+']';
+				System.debug(message);
+				return false;
+			}
 		}
 		service = t.Oauth_Service__r;
 		
